@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.io.File
+import java.net.URL
 import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.Clip
-import kotlin.io.path.Path
 
 @ExperimentalBasicSound
 public actual class Audio actual constructor(): AudioBuilder {
@@ -38,8 +38,8 @@ public actual class Audio actual constructor(): AudioBuilder {
             _audioState.value = AudioState.LOADING
 
             val stream = if (resource.substring(0, 4) == "http") {
-                AudioSystem.getAudioInputStream(Path(resource).toUri().toURL())
-                    ?: throw IllegalStateException("load:The URL provided was invalid or failed to load")
+                AudioSystem.getAudioInputStream(URL(resource))
+                    ?: throw IllegalStateException("load:The resource URL was invalid or failed to load")
             } else {
                 AudioSystem.getAudioInputStream(File(resource).absoluteFile)
                     ?: throw IllegalStateException("load:The path provided was invalid")
