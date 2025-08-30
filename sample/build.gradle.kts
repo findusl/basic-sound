@@ -8,7 +8,7 @@ repositories {
 }
 
 dependencies {
-    implementation(fileTree("../basic-sound/build/libs") { include("basic-sound-jvm-*.jar") })
+    implementation("app.lexilabs.basic:basic-sound:0.2.6-beta01")
 }
 
 application {

@@ -1,5 +1,7 @@
 import app.lexilabs.basic.sound.Audio
+import app.lexilabs.basic.sound.ExperimentalBasicSound
 
+@OptIn(ExperimentalBasicSound::class)
 fun main(args: Array<String>) {
     val resource = if (args.isNotEmpty()) {
         args[0]
